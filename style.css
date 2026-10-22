@@ -1,0 +1,384 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #080b14;
+  color: #fff;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 16px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  background: rgba(10, 13, 25, .88);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.logo span,
+.hero h1 span {
+  color: #00e5ff;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+nav a {
+  color: #cbd5e1;
+  font-size: 14px;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: #00e5ff;
+  text-shadow: 0 0 12px #00e5ff;
+}
+
+.hero {
+  min-height: 620px;
+  padding: 65px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 45px;
+  background:
+    radial-gradient(ellipse at 80% 45%, #102b45 0%, transparent 45%),
+    linear-gradient(135deg, #080b14, #101021);
+}
+
+.hero-text {
+  max-width: 560px;
+  animation: appear 1s ease both;
+}
+
+.tag {
+  color: #00e5ff;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 49px);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.hero h2 {
+  color: #9b8cff;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+.hero-text > p:not(.tag) {
+  color: #aebbd0;
+  margin-bottom: 25px;
+}
+
+/* গোল প্রোফাইল ও অ্যানিমেটেড রিং */
+.photo-frame {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  min-width: 260px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(
+    #00e5ff,
+    #8b5cf6,
+    #ff4ecd,
+    #00e5ff
+  );
+  padding: 5px;
+  box-shadow:
+    0 0 25px #00e5ff55,
+    0 0 60px #8b5cf633;
+  animation: float 4s ease-in-out infinite;
+  transition: transform .4s, box-shadow .4s;
+}
+
+/* ঘূর্ণায়মান বাইরের রিং */
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 2px dashed #00e5ff99;
+  animation: spin 12s linear infinite;
+  pointer-events: none;
+}
+
+/* বাইরের আলোর বলয় */
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px solid #8b5cf655;
+  animation: pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.photo-frame:hover {
+  transform: scale(1.07) translateY(-5px);
+  box-shadow:
+    0 0 35px #00e5ff99,
+    0 0 80px #8b5cf655;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  border: 4px solid #080b14;
+  position: relative;
+  z-index: 1;
+}
+
+/* বাটন */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 11px 21px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  transition: .3s ease;
+}
+
+.primary {
+  color: #071019;
+  background: linear-gradient(100deg, #00e5ff, #9b8cff);
+  box-shadow: 0 0 18px #00e5ff33;
+}
+
+.primary:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 30px #00e5ff99;
+}
+
+.secondary {
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+}
+
+.secondary:hover {
+  background: #00e5ff;
+  color: #080b14;
+  box-shadow: 0 0 22px #00e5ff77;
+  transform: translateY(-4px);
+}
+
+/* পরিচিতি ও অন্যান্য সেকশন */
+.section {
+  padding: 75px 8%;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.about,
+.contact {
+  background: #101321;
+}
+
+.about > p:last-child {
+  max-width: 700px;
+  margin: auto;
+  color: #b5bfd1;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.card {
+  padding: 28px 20px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #151a2c, #0d1120);
+  border: 1px solid #ffffff12;
+  transition: .35s ease;
+}
+
+.card:hover {
+  transform: translateY(-9px);
+  border-color: #00e5ff;
+  box-shadow: 0 12px 35px #00e5ff18;
+}
+
+.card-icon {
+  font-size: 36px;
+  color: #00e5ff;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p,
+.contact p:not(.tag) {
+  color: #b5bfd1;
+}
+
+.contact .btn {
+  margin-top: 24px;
+}
+
+footer {
+  padding: 22px 7%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: #070910;
+  color: #9ca8bb;
+  font-size: 12px;
+}
+
+footer a {
+  color: #00e5ff;
+}
+
+/* লাইভ অ্যানিমেশন */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: .4;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* মোবাইল স্ক্রিন */
+@media (max-width: 700px) {
+  .header {
+    flex-direction: column;
+    padding: 15px 5%;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 55px 7%;
+    gap: 38px;
+  }
+
+  .photo-frame {
+    width: 210px;
+    height: 210px;
+    min-width: 210px;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 55px 7%;
+  }
+
+  .section h2 {
+    font-size: 25px;
+  }
+
+  footer {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* অ্যানিমেশন কম পছন্দ হলে */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
